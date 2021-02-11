@@ -30,16 +30,21 @@ public class Main {
         String propertiesProfile = System.getProperties().getProperty("contactbook.profile");
 
         String propertiesFile = "";
-        switch (propertiesProfile) {
-            case ("dev"):
-                propertiesFile = "app-dev.properties";
-                break;
-            case ("prod"):
-                propertiesFile = "app-prod.properties";
-                break;
-            default:
-                System.out.println("Contactbook.profile launch parameter not set");
-                return;
+        if (propertiesProfile != null) {
+            switch (propertiesProfile) {
+                case ("dev"):
+                    propertiesFile = "app-dev.properties";
+                    break;
+                case ("prod"):
+                    propertiesFile = "app-prod.properties";
+                    break;
+                default:
+                    System.out.println("Contactbook.profile launch parameter is not correct");
+                    return;
+            }
+        } else {
+            System.out.println("Contactbook.profile launch parameter not set");
+            return;
         }
 
         Properties properties = new Properties();
